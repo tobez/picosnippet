@@ -1,0 +1,100 @@
+The picosnippet() function provides very simple and easy
+to use HTML/DOM templating capabilities.
+
+It does not use any sort of special templating syntax -
+the template can be any valid HTML element.  The data,
+represented by JavaScript associative arrays, are spliced
+into a copy of the template using simple, consistent,
+and easy to remember rules.
+
+This allows the user to completely separate the HTML
+markup from the application JavaScript logic without
+using complicated libraries.
+
+For details, please see documentation supplied with the
+distribution, or visit http://www.tobez.org/picosnippet/ .
+
+Please report any bugs and address any comments or feature
+requests to tobez@tobez.org.
+
+See the end of this file for license and copyright information.
+
+
+BROWSER COMPATIBILITY
+---------------------
+
+The picosnippet() function has been tested and is known to fully
+work with:
+
+	- Chrome 5.0.375.86 (Linux)
+	- Chrome 5.0.375.70 (Mac OS X)
+	- Chrome 5.0.375.70 (Windows)
+	- firefox 3.6.4 (FreeBSD)
+	- firefox 3.5.9 (Linux)
+	- firefox 3.6.3 (Max OS X)
+	- firefox 3.6 (Windows)
+	- opera 9.80 (FreeBSD)
+	- opera 9.80 (Linux)
+	- opera 10.51, 10.54 (Windows)
+	- Safari 5.0 (Mac OS X)
+
+It mostly works with IE 7.0 and 8.0 on Windows, except when
+templating tables.  The workaround is being developed.
+
+It is very likely that the picosnippet() function will work with
+other versions of those browsers (except for old versions of IE),
+even though it has not been tested with them.
+
+
+JAVASCRIPT LIBRARIES
+--------------------
+
+Please note that various JavaScript libraries are bundled with this
+distribution only for convenience, and that they have their respective
+licenses, often different from the picosnippet() license (but always
+compatible with it).
+
+The picosnippet() function does not itself use any of these libraries.
+Libraries that are bundled with this distributuin are only used in the
+unit testing scripts.
+
+Here is the list:
+
+jquery
+	http://jquery.com/
+	License: MIT/GPL
+QUnit
+	http://docs.jquery.com/QUnit
+	License: MIT/GPL
+
+
+LICENSE AND COPYRIGHT
+---------------------
+
+This work is in part sponsored by Telia Denmark.
+
+Copyright (c) 2010, Anton Berezin "<tobez@tobez.org>". All rights
+reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY AUTHOR AND CONTRIBUTORS ``AS IS'' AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL AUTHOR OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

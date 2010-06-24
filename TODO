@@ -1,0 +1,6 @@
+Fix templating tables in IE.
+	- reference: http://www.ericvasilik.com/2006/07/code-karma.html
+	- reference: http://webbugtrack.blogspot.com/2007/12/bug-210-no-innerhtml-support-on-tables.html
+	- reference: pure source code
+	- reference: jquery source code
+	- relevant search: http://www.google.dk/search?q=error+assigning+innerhtml+ie

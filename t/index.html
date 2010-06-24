@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>picosnippet test suite</title>
+	<link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen">
+	<script type="text/javascript" src="jquery/jquery-current.js"></script>
+	<script type="text/javascript" src="qunit/qunit.js"></script>
+	<script type="text/javascript" src="../picosnippet/picosnippet.js"></script>
+	<script type="text/javascript" src="test.js"></script>
+</head>
+<body>
+	<h1 id="qunit-header">picosnippet test suite</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+<div style="display:none;" id="snippets">
+
+<div id="sn1">
+<p class=" abc  xyz ">
+heps
+</p>
+<p class="c2">
+moo
+</p>
+<p class="todel">
+Not there
+</p>
+<input type="text" class="inp" value="valalalala"/>
+<ul>
+<li class="mult">
+will multiply
+</li>
+</ul>
+<a class="ref" href="http://www.microsoft.com/">Windows</a>
+<input type="text" class="inp2" value="xy"/>
+<ul>
+<li class="mult2">
+<span class="num">N</span><a class="reff" href="#">xyz</a>
+</li>
+</ul>
+</div>
+
+<p id="myid" class="mykey">Blah</p>
+
+<div id="ex2">
+     <p class="t1">Blah</p>
+     <p class="t2">Second paragraph</p>
+     <p class="t3">Blurgh</p>
+</div>
+
+   <div id="ex3">
+      <input type="text" class="name" value="John Doe"/>
+   </div>
+
+   <ul id="ex4">
+      <li class="mylist content">...</li>
+   </ul>
+
+   <ul id="ex5">
+      <li class="mylist">...</li>
+   </ul>
+
+   <ul id="ex6">
+      <li class="mylist">...</li>
+   </ul>
+
+   <table id="ex7">
+     <tr class="row">
+       <td class="name">...</td>
+       <td class="age">...</td>
+     </tr>
+   </table>
+
+   <ul id="ex7bis">
+     <li class="row">
+       <span class="name">...</span>
+       <span class="age">...</span>
+     </li>
+   </ul>
+
+   <div id="ex8">
+     <p>first</p>
+     <p class="to-delete">second</p>
+     <p>last</p>
+   </div>
+
+   <a id="ex9" class="myref" href="http://www.microsoft.com/">
+     Windows
+   </a>
+
+<div id="export-csv-dialog">
+<div class="export-csv-form" title="Export XXX as CSV">
+<ul class="connectedSortable">
+<li class="active_columns name"></li>
+</ul>
+<ul class="connectedSortable">
+<li class="inactive_columns name"></li>
+</ul>
+</div>
+</div>
+
+</div>
+<script type="text/javascript">
+$().ready(function(){ do_tests(); });
+</script>
+</body>
+</html>

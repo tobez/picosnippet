@@ -1,0 +1,362 @@
+# Picosnippet() documentation
+
+## Summary
+
+The picosnippet() function provides very simple and easy
+to use HTML/DOM templating capabilities.
+
+The function takes two parameters: a template, and the
+data to be spliced into a copy of the template.
+
+The template is simply a DOM element.  The data is
+a JavaScript associated array.
+
+## Syntax by example
+
+### Simple example
+
+A simple example would be:
+
+    <script src="picosnippet.js"></script>
+    <p id="myid" class="mykey">Blah</p>
+    <script>
+       var template = document.getElementById("myid");
+       var result = picosnippet(template, {mykey: "Hello there"});
+       document.body.appendChild(result);
+    </script>
+
+As you can see, the picosnippet() function matches the keys
+in the associative data array with the class attribute
+of DOM elements to decide what needs to be substituted.
+
+### Non-modification of templates
+
+An important thing to remember is that picosnippet()
+__never__ modifies the template itself.
+Any substitutions are always done on a copy.
+
+### The question of identity
+
+Another important thing to remember is that
+in a single DOM tree there should never be 
+two or more elements with the same ID attribute.
+
+For this reason, when the template is copied,
+the picosnippet() function removes the ID
+attribute from the copy.
+
+It does not do it recursively, though,
+so avoid using the ID attribute inside
+the templates.
+
+### Simple example with jQuery
+
+The example above did not use any JavaScript framework.
+The picosnippet() function itself is completely framework-agnostic.
+This does not mean that it cannot be used in conjunction with
+some framework.  Let's rewrite the example above in terms of jQuery:
+
+    <script src="jquery.js"></script>
+    <script src="picosnippet.js"></script>
+    <p id="myid" class="mykey">Blah</p>
+    <script>
+       $().ready(function(){
+         $("#myid").after(
+           picosnippet($("#myid").get(), {mykey: "Hello there"}));
+       });
+    </script>
+
+### Presentation conventions
+
+In further examples, we'll only show the template, the data,
+and the result, skipping the invocation entirely,
+for simplicity.  So our first example would look like:
+
+    Template:
+    <p class="mykey">Blah</p>
+
+    Data:
+    {mykey: "Hello there"}
+
+    Result:
+    <p class="mykey">Hello there</p>
+
+### Substitution within DOM subtree
+
+Of course, the elements on which the substitution is performed,
+do not need to be at the top level of our DOM subtree:
+
+    Template:
+    <div>
+      <p class="t1">Blah</p>
+      <p class="t2">Second paragraph</p>
+      <p class="t3">Blurgh</p>
+    </div>
+
+    Data:
+    {t1: "First paragraph", t3: "Last paragraph"}
+
+    Result:
+    <div>
+      <p class="t1">First paragraph</p>
+      <p class="t2">Second paragraph</p>
+      <p class="t3">Last paragraph</p>
+    </div>
+
+### Support for input elements
+
+For input elements, picosnippet() knows to
+modify the value and not the content:
+
+    Template:
+    <div>
+       <input type="text" class="name" value="John Doe"/>
+    </div>
+
+    Data:
+    {name: "The Flying Dutchman"}
+
+    Result:
+    <div>
+       <input type="text" class="name" value="The Flying Dutchman"/>
+    </div>
+
+### Iteration the hard way
+
+Iteration is also supported, and expressed by an array in the data:
+
+    Template:
+    <ul>
+       <li class="mylist content">...</li>
+    </ul>
+
+    Data:
+    {mylist: [{content: "first"}, {content: "second"}]}
+
+    Result:
+    <ul>
+       <li class="mylist content">first</li>
+       <li class="mylist content">second</li>
+    </ul>
+
+### Iteration the normal way
+
+Or simpler:
+
+    Template:
+    <ul>
+       <li class="mylist">...</li>
+    </ul>
+
+    Data:
+    {mylist: [{mylist: "first"}, {mylist: "second"}]}
+
+    Result:
+    <ul>
+       <li class="mylist">first</li>
+       <li class="mylist">second</li>
+    </ul>
+
+### Iteration the easy way
+
+Or simpler still:
+
+    Template:
+    <ul>
+       <li class="mylist">...</li>
+    </ul>
+
+    Data:
+    {mylist: ["first", "second"]}
+
+    Result:
+    <ul>
+       <li class="mylist">first</li>
+       <li class="mylist">second</li>
+    </ul>
+
+### Useful iteration the normal way
+
+The more complex form with associative arrays within the
+iteration array is useful if we want something more elaborate:
+
+    Template:
+    <table>
+      <tr class="row">
+        <td class="name">...</td>
+        <td class="age">...</td>
+      </tr>
+    </table>
+
+    Data:
+    {row: [{name: "Jenny", age: 24}, {name: "John", age: 29}]}
+
+    Result:
+    <table>
+      <tr class="row">
+        <td class="name">Jenny</td>
+        <td class="age">24</td>
+      </tr>
+      <tr class="row">
+        <td class="name">John</td>
+        <td class="age">29</td>
+      </tr>
+    </table>
+
+Please note that currently the picosnippet() function
+cannot handle templating tables or table elements in
+Internet Explorer, due to its DOM implementation bugs.
+This hopefully will be worked around soon.
+
+### Removing elements with empty iteration
+
+In the limiting case of an empty iteration array the picosnippet()
+function will do the expected thing and remove the element in
+question from the result:
+
+    Template:
+    <div>
+      <p>first</p>
+      <p class="to-delete">second</p>
+      <p>last</p>
+    </div>
+
+    Data:
+    {"to-delete": []}
+
+    Result:
+    <div>
+      <p>first</p>
+      <p>last</p>
+    </div>
+
+### Iteration limitations
+
+The only limitation for using the iteration in templates
+is that one cannot iterate over the root element of the
+template subtree, since the result is always a single DOM
+subtree, not an array of such.
+
+### Substituting attributes
+
+To be able to substitute not just the element
+text or element value (for input elements),
+picosnippet() provides yet another possibility.
+If the substitution value in the data is
+itself an associative array, the function
+will assume that the keys in it are
+attributes.  Two key names, "text" and "value",
+are special, to retain the ability to
+modify an element's text and/or value
+while modifying its attributes at the same time:
+
+    Template:
+    <a class="myref" href="http://www.microsoft.com/">
+      Windows
+    </a>
+
+    Data:
+    {"myref": {text: "Mac OS X", href: "http://www.apple.com/"}}
+
+    Result:
+    <a class="myref" href="http://www.apple.com/">
+      Mac OS X
+    </a>
+
+### Syntax conclusion
+
+This is basically all there is to what picosnippet()
+can do.  The above forms for substitution data can
+be combined into an arbitrarily complex data structure
+to achieve the results you want.
+
+## Recommended usage pattern
+
+Since the template itself is never modified,
+and probably should not be visible,
+it makes sense to keep your templates
+in an HTML file, wrapped into an invisible DIV,
+like this:
+
+    <div style="display:none;" id="snippets">
+      <p id="snippet1" class="mykey">Blah</p>
+
+      <div id="snippet2">
+        <p class="t1">Blah</p>
+        <p class="t2">Second paragraph</p>
+        <p class="t3">Blurgh</p>
+      </div>
+
+      ...
+    </div>
+
+## Development history
+
+I've been using the wonderful templating tool
+[PURE](http://beebole.com/pure/) for some time.
+It has a rendering method, autoRender(), which
+in a way is very similar to what picosnippet()
+does.  Unfortunately, for some simple cases,
+autoRender() is not enough, and one has to resort
+to using a much more powerful, albeit a bit cumbersome,
+render(), which allows one to specify pretty much
+everything about what substitutions to do and how.
+So while PURE makes complicated things possible,
+it unfortunately does not make simple things simple,
+and it was precisely the simplicity that I was seeking.
+Seriously, how important a templating library can be?
+We all want to get such trivialities out of the way
+and just concentrate on writing wonderful applications.
+
+So I felt that having something simple like
+picosnippet() would be the ticket.  What it
+does is probably enough for 98% of what people
+need a templating library for.
+
+## Author
+
+Anton Berezin <tobez@tobez.org>
+
+## Acknowledgements
+
+I would like to thank the author of PURE, Mic (BeeBole).
+
+This work is in part sponsored by Telia Denmark.
+
+## Support
+
+[There is a website](http://www.tobez.org/picosnippet/)
+dedicated to picosnippet().
+
+The source code repository is at [github](http://github.com/tobez/picosnippet).
+
+Please report any bugs and address any comments or feature
+requests to tobez@tobez.org.
+
+## License and Copyright
+
+    Copyright (c) 2010, Anton Berezin "<tobez@tobez.org>". All rights
+    reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are
+    met:
+
+    1. Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in the
+       documentation and/or other materials provided with the distribution.
+
+    THIS SOFTWARE IS PROVIDED BY AUTHOR AND CONTRIBUTORS ``AS IS'' AND ANY
+    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL AUTHOR OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+    BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+    OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+    ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
