@@ -1,11 +1,11 @@
 function do_tests()
 {
-	test("picosnippet() simple", function() {
+	test("simple", function() {
 		expect(1);
 		var $r = $(picosnippet(document.getElementById("myid"), {mykey:"hello"}));
 		equals($r.text(), "hello", "simple ok");
 	});
-	test("picosnippet() example 2", function() {
+	test("example 2", function() {
 		expect(3);
 		var $r = $(picosnippet(document.getElementById("ex2"),
 			{t1: "First paragraph", t3: "Last paragraph"}
@@ -14,14 +14,14 @@ function do_tests()
 		equals($r.find(".t2").text(), "Second paragraph", "second ok");
 		equals($r.find(".t3").text(), "Last paragraph", "second ok");
 	});
-	test("picosnippet() example 3", function() {
+	test("example 3", function() {
 		expect(1);
 		var $r = $(picosnippet(document.getElementById("ex3"),
 			{name: "The Flying Dutchman"}
 		));
 		equals($r.find(".name").val(), "The Flying Dutchman", "input ok");
 	});
-	test("picosnippet() example 4", function() {
+	test("example 4", function() {
 		expect(2);
 		var $r = $(picosnippet(document.getElementById("ex4"),
 			{mylist: [{content: "first"}, {content: "second"}]}
@@ -29,7 +29,7 @@ function do_tests()
 		equals($r.find(".mylist").slice(0,1).text(), "first", "first");
 		equals($r.find(".mylist").slice(1,2).text(), "second", "second");
 	});
-	test("picosnippet() example 5", function() {
+	test("example 5", function() {
 		expect(2);
 		var $r = $(picosnippet(document.getElementById("ex5"),
 			{mylist: [{mylist: "first"}, {mylist: "second"}]}
@@ -37,7 +37,7 @@ function do_tests()
 		equals($r.find(".mylist").slice(0,1).text(), "first", "first");
 		equals($r.find(".mylist").slice(1,2).text(), "second", "second");
 	});
-	test("picosnippet() example 6", function() {
+	test("example 6", function() {
 		expect(2);
 		var $r = $(picosnippet(document.getElementById("ex6"),
 			{mylist: ["first", "second"]}
@@ -45,7 +45,7 @@ function do_tests()
 		equals($r.find(".mylist").slice(0,1).text(), "first", "first");
 		equals($r.find(".mylist").slice(1,2).text(), "second", "second");
 	});
-	test("picosnippet() example 7", function() {
+	test("example 7", function() {
 		expect(4);
 		var $r = $(picosnippet(document.getElementById("ex7"),
 			{row: [{name: "Jenny", age: 24}, {name: "John", age: 29}]}
@@ -55,7 +55,7 @@ function do_tests()
 		equals($r.find(".row").slice(0,1).find(".age").text(), 24, "first age");
 		equals($r.find(".row").slice(1,2).find(".age").text(), 29, "second age");
 	});
-	test("picosnippet() example 7, no tables", function() {
+	test("example 7, no tables", function() {
 		expect(4);
 		var $r = $(picosnippet(document.getElementById("ex7bis"),
 			{row: [{name: "Jenny", age: 24}, {name: "John", age: 29}]}
@@ -65,14 +65,14 @@ function do_tests()
 		equals($r.find(".row").slice(0,1).find(".age").text(), 24, "first age");
 		equals($r.find(".row").slice(1,2).find(".age").text(), 29, "second age");
 	});
-	test("picosnippet() example 8", function() {
+	test("example 8", function() {
 		expect(1);
 		var $r = $(picosnippet(document.getElementById("ex8"),
 			{"to-delete": []}
 		));
 		equals($r.find(".to-delete").length, 0, "deleted");
 	});
-	test("picosnippet() example 9", function() {
+	test("example 9", function() {
 		expect(2);
 		var $r = $(picosnippet(document.getElementById("ex9"),
 			{"myref": {text: "Mac OS X", href: "http://www.apple.com/"}}
@@ -81,7 +81,7 @@ function do_tests()
 		equals($r.attr("href"), "http://www.apple.com/", "anchor href substituted");
 	});
 
-	test("picosnippet() multiple", function() {
+	test("multiple", function() {
 		expect(4);
 		var $r = $(picosnippet(document.getElementById("export-csv-dialog"),
 			{active_columns: [{name: 'aa'}, {name: 'bb'}],
@@ -93,7 +93,7 @@ function do_tests()
 		equals($r.find(".inactive_columns").slice(1,2).text(), "xx", "inactive second");
 	});
 
-	test("picosnippet() all features", function() {
+	test("all features", function() {
 		expect(19);
 		var r = picosnippet(document.getElementById("sn1"),
 			{xyz:"hest", c2: "class 2",
