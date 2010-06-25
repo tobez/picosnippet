@@ -127,4 +127,37 @@ function do_tests()
 		equals($r.find(".mult2").slice(0,1).find("a").attr("href"), "http://one/", "first anchor href");
 		equals($r.find(".mult2").slice(1,2).find("a").attr("href"), "http://two/", "second anchor href");
 	});
+
+	test("id removal", function() {
+		expect(1);
+		var $r = $(picosnippet(document.getElementById("id"),
+			{}
+		));
+		equals($r.attr("id"), "", "id removed");
+	});
+	test("id change", function() {
+		expect(1);
+		var $r = $(picosnippet(document.getElementById("id"),
+			{main:{id:"newid"}}
+		));
+		equals($r.attr("id"), "newid", "id changed");
+	});
+	test("no recurse", function() {
+		expect(3);
+		var $r = $(picosnippet(document.getElementById("recurse"),
+			{main:"xyz","xyz":"abc"}
+		));
+		equals($r.text(), "xyz", "main replacement");
+		equals($r.attr("title"), "meow", "main original title");
+		equals($r.find(".xyz").length, 0, "no kids");
+	});
+	test("recurse", function() {
+		expect(3);
+		var $r = $(picosnippet(document.getElementById("recurse"),
+			{main:{title:"xyz"},"xyz":"abc"}
+		));
+		equals($r.attr("title"), "xyz", "main new title");
+		equals($r.find(".xyz").length, 1, "kid survived");
+		equals($r.find(".xyz").text(), "abc", "kid replaced");
+	});
 }
