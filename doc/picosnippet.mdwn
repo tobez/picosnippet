@@ -62,7 +62,7 @@ some framework.  Let's rewrite the example above in terms of jQuery:
     <script>
        $().ready(function(){
          $("#myid").after(
-           picosnippet($("#myid").get(), {mykey: "Hello there"}));
+           picosnippet($("#myid").get(0), {mykey: "Hello there"}));
        });
     </script>
 
