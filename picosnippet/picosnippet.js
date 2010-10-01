@@ -1,5 +1,5 @@
 /*!
- * picosnippet v1.2
+ * picosnippet v1.3
  * http://www.tobez.org/picosnippet/
  *
  * Copyright 2010, Anton Berezin
