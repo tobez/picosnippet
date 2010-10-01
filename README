@@ -51,7 +51,7 @@ licenses, often different from the picosnippet() license (but always
 compatible with it).
 
 The picosnippet() function does not itself use any of these libraries.
-Libraries that are bundled with this distributuin are only used in the
+Libraries that are bundled with this distribution are only used in the
 unit testing scripts.
 
 Here is the list:
