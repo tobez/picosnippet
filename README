@@ -26,24 +26,20 @@ BROWSER COMPATIBILITY
 The picosnippet() function has been tested and is known to fully
 work with:
 
-	- Chrome 5.0.375.86 (Linux)
-	- Chrome 5.0.375.70 (Mac OS X)
-	- Chrome 5.0.375.70 (Windows)
-	- firefox 3.6.4 (FreeBSD)
-	- firefox 3.5.9 (Linux)
-	- firefox 3.6.3 (Max OS X)
+	- Chrome 6.0.472.63 (Windows)
+	- Chrome 6.0.472.63 (Linux)
+	- firefox 3.6.10 (FreeBSD)
+	- firefox 3.6.10 (Linux)
 	- firefox 3.6 (Windows)
-	- opera 9.80 (FreeBSD)
-	- opera 9.80 (Linux)
-	- opera 10.51, 10.54 (Windows)
-	- Safari 5.0 (Mac OS X)
+	- opera 10.61 (FreeBSD)
+	- opera 10.62 (Linux)
+	- Safari (iOS 4.1)
+	- IE 7.0.5730.13 (Windows)
+	- IE 8.0.6001.18702 (Windows)
 
-It mostly works with IE 7.0 and 8.0 on Windows, except when
-templating tables.  The workaround is being developed.
-
-It is very likely that the picosnippet() function will work with
-other versions of those browsers (except for old versions of IE),
-even though it has not been tested with them.
+It is very likely that the picosnippet() function will work with other
+versions of those browsers (except for old versions of IE, which are
+hereby declared not supported), even though it has not been tested with them.
 
 
 JAVASCRIPT LIBRARIES

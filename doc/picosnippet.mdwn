@@ -203,11 +203,6 @@ iteration array is useful if we want something more elaborate:
       </tr>
     </table>
 
-Please note that currently the picosnippet() function
-cannot handle templating tables or table elements in
-Internet Explorer, due to its DOM implementation bugs.
-This hopefully will be worked around soon.
-
 ### Removing elements with empty iteration
 
 In the limiting case of an empty iteration array the picosnippet()

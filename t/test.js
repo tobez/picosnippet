@@ -55,6 +55,16 @@ function do_tests()
 		equals($r.find(".row").slice(0,1).find(".age").text(), 24, "first age");
 		equals($r.find(".row").slice(1,2).find(".age").text(), 29, "second age");
 	});
+	test("example 7 repeat", function() {
+		expect(4);
+		var $r = $(picosnippet(document.getElementById("ex7"),
+			{row: [{name: "Frederik", age: 90}, {name: "Larry", age: 72}]}
+		));
+		equals($r.find(".row").slice(0,1).find(".name").text(), "Frederik", "first name");
+		equals($r.find(".row").slice(1,2).find(".name").text(), "Larry", "second name");
+		equals($r.find(".row").slice(0,1).find(".age").text(), 90, "first age");
+		equals($r.find(".row").slice(1,2).find(".age").text(), 72, "second age");
+	});
 	test("example 7, no tables", function() {
 		expect(4);
 		var $r = $(picosnippet(document.getElementById("ex7bis"),
@@ -64,6 +74,16 @@ function do_tests()
 		equals($r.find(".row").slice(1,2).find(".name").text(), "John", "second name");
 		equals($r.find(".row").slice(0,1).find(".age").text(), 24, "first age");
 		equals($r.find(".row").slice(1,2).find(".age").text(), 29, "second age");
+	});
+	test("example 7, no tables, repeat", function() {
+		expect(4);
+		var $r = $(picosnippet(document.getElementById("ex7bis"),
+			{row: [{name: "Frederik", age: 90}, {name: "Larry", age: 72}]}
+		));
+		equals($r.find(".row").slice(0,1).find(".name").text(), "Frederik", "first name");
+		equals($r.find(".row").slice(1,2).find(".name").text(), "Larry", "second name");
+		equals($r.find(".row").slice(0,1).find(".age").text(), 90, "first age");
+		equals($r.find(".row").slice(1,2).find(".age").text(), 72, "second age");
 	});
 	test("example 8", function() {
 		expect(1);
@@ -133,7 +153,8 @@ function do_tests()
 		var $r = $(picosnippet(document.getElementById("id"),
 			{}
 		));
-		equals($r.attr("id"), "", "id removed");
+		var id = $r.attr("id");
+		equals(id, "", "id removed");
 	});
 	test("id change", function() {
 		expect(1);
