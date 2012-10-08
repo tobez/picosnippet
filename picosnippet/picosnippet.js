@@ -1,12 +1,12 @@
 /*!
- * picosnippet v1.4
+ * picosnippet v1.5
  * http://www.tobez.org/picosnippet/
  *
- * Copyright 2010, Anton Berezin
+ * Copyright 2010-2012, Anton Berezin
  * Modified BSD license.
  * http://www.tobez.org/picosnippet/license.txt
  *
- * Date: Thu Jun 24 13:30:41 CEST 2010
+ * Date: Mon Oct  8 10:28:24 CEST 2012
  */
 function picosnippet(template, d)
 {
@@ -24,6 +24,11 @@ function picosnippet(template, d)
 				if (a == "text") {
 					e.innerHTML = v[a];
 					content_changed = true;
+				} else if (a == "checked") {
+					if (v[a])
+						e.setAttribute(a, v[a]);
+					else
+						e.removeAttribute(a);
 				} else {
 					e.setAttribute(a, v[a]);
 				}

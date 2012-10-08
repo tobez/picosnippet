@@ -1,5 +1,7 @@
 # Picosnippet() documentation
 
+This file documents picosnippet version 1.5.
+
 ## Summary
 
 The picosnippet() function provides very simple and easy
@@ -258,6 +260,26 @@ while modifying its attributes at the same time:
       Mac OS X
     </a>
 
+Key name "checked" is also special: when its value
+is true, the "checked" attribute is set,
+while when its value is false, the "checked" attribute
+is removed:
+
+    Template:
+	<div>
+		<input class="chbox1" type="checkbox"/>
+		<input class="chbox2" type="checkbox" checked/>
+	</div>
+
+    Data:
+    {"chbox1": {checked: 1}, "chbox2": {checked: 0}}
+
+    Result:
+	<div>
+		<input class="chbox1" type="checkbox" checked/>
+		<input class="chbox2" type="checkbox"/>
+	</div>
+
 ### Syntax conclusion
 
 This is basically all there is to what picosnippet()
@@ -330,7 +352,7 @@ requests to tobez@tobez.org.
 
 ## License and Copyright
 
-    Copyright (c) 2010, Anton Berezin "<tobez@tobez.org>". All rights
+    Copyright (c) 2010-2012, Anton Berezin "<tobez@tobez.org>". All rights
     reserved.
 
     Redistribution and use in source and binary forms, with or without

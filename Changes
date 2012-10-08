@@ -1,3 +1,7 @@
+Mon Oct  8 10:27:07 CEST 2012
+Version 1.5
+	- special handling of "checked" attribute
+
 Tue May 24 14:11:28 CEST 2011
 Version 1.4
 	- remove extraneous declarations

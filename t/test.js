@@ -163,6 +163,29 @@ function do_tests()
 		));
 		equals($r.attr("id"), "newid", "id changed");
 	});
+	test("checked", function() {
+		expect(8);
+
+		var $b = $("#chbox");
+		ok($b.find(".check1").is(":checked"), "before: checked1 checked");
+		ok(!$b.find(".check2").is(":checked"), "before: checked2 not checked");
+		ok($b.find(".check3").is(":checked"), "before: checked3 checked");
+		ok(!$b.find(".check4").is(":checked"), "before: checked4 not checked");
+
+		var $r = $(picosnippet(document.getElementById("chbox"),
+			{
+				check1:{checked:1},
+				check2:{checked:1},
+				check3:{checked:0},
+				check4:{checked:0},
+			}
+		));
+
+		ok($r.find(".check1").is(":checked"), "after: checked1 checked");
+		ok($r.find(".check2").is(":checked"), "after: checked2 checked");
+		ok(!$r.find(".check3").is(":checked"), "after: checked3 not checked");
+		ok(!$r.find(".check4").is(":checked"), "after: checked4 not checked");
+	});
 	test("no recurse", function() {
 		expect(3);
 		var $r = $(picosnippet(document.getElementById("recurse"),
